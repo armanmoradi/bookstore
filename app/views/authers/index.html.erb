@@ -1,0 +1,13 @@
+<h2>Authers</h2>
+<table class="table table-striped">
+    <tr>
+    	<th>Authers Name</th>
+    	<th>Action</th>
+    </tr>
+     <% @authers.each do |auther| %>
+     <tr>
+     	<td><%= auther.first_name %> <%= auther.last_name %></td>
+     	<td><%= link_to 'Edit', edit_auther_path(auther.id) %> | <%= link_to 'Delete', auther_path(auther), method: :delete, data: {confirm: 'Are you sure'}  %></td>
+     </tr>
+     <% end %>
+</table>

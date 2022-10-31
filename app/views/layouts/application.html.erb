@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @page_title ? @page_title : 'Welcome'  %> | The Bookstore</title>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+ 
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav ">
+              <li class="<%= params{:controller} == 'books' ? 'active' : '' %> , p-2">
+                <%= link_to 'Home', root_path %>
+              </li>
+              <li class="<%= params{:controller} == 'about' ? 'active' : '' %>, p-2">
+                <%= link_to 'About', about_path %>
+              </li>
+             
+             
+             
+            </ul>
+            
+          </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+           Add new
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><%= link_to "Book", new_book_path %></li>
+          <li><%= link_to "Category", new_category_path %></li>
+          <li><%= link_to "Auther", new_auther_path %></li>
+          <li><%= link_to "Publisher", new_publisher_path %></li>
+         </ul>
+  </div> 
+  <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+           Manage
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+         
+          <li><%= link_to "Categoreis", categories_path %></li>
+          <li><%= link_to "Authers", authers_path %></li>
+          <li><%= link_to "Publishers", publishers_path %></li>
+         </ul>
+  </div> 
+ </nav>
+ <header>
+   <div class="container">
+      <h1>The Bookstore <small><%= @page_title ? @page_title : 'Welcome' %></small></h1>
+    </div>
+ </header>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+          
+          <% if flash[:notice] %>
+          <div class="alert alert-success"><%= flash[:notice] %></div>
+          <% end %>
+          <% if flash[:alert] %>
+          <div class="alert alert-danger"><%= flash[:alert] %></div>
+          <% end %>
+
+
+            <%= yield %>
+          </div>
+          <div class="col-md-4">
+            <%= render 'partials/sidebar' %>
+          </div>
+            
+        </div>
+      
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>Copyright &copy; 2014, All Rights Reserved</p>
+        
+      </div>
+    </footer>
+    
+  </body>
+</html>
